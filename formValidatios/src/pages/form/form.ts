@@ -18,6 +18,13 @@ export class FormPage {
   ionViewDidLoad() {
     this.sampleForm = this.fbld.group({
       username: ['', Validators.required],
+      name: ['', Validators.required],
+      surname: ['', Validators.required],
+      email: ['', Validators.required],
+      gender: ['male', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      agree: ['false', Validators.required]
     });
   }
 

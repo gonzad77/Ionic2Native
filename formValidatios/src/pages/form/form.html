@@ -4,10 +4,53 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm.value)">
+<ion-content padding class="form-content">
+  <form [formGroup]="sampleForm" class="form" (ngSubmit)="onSubmit(sampleForm.value)">
+
     <ion-item>
-      <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+      <ion-label floating color="primary" >Username</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" >Name</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" >Surname</ion-label>
+      <ion-input type="text" formControlName="surname"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" >Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary">Gender</ion-label>
+      <ion-select formControlName="gender">
+        <ion-option value="male" selected="true">Male</ion-option>
+        <ion-option value="female">Female</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" >Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating color="primary" >Confirm Password</ion-label>
+      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+    </ion-item>
+
+    <ion-item class="term">
+      <ion-label class="terms-checkbox-label">I read Terms and Conditions</ion-label>
+      <ion-checkbox color="primary" formControlName="agree"></ion-checkbox>
+    </ion-item>
+
+    <button ion-button full type="submit" [disabled]="!sampleForm.valid">Submit</button>
+
   </form>
 </ion-content>
