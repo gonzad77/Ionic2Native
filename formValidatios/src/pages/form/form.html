@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Ionic Forms Example</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="sampleForm" (ngSubmit)="onSubmit(sampleForm.value)">
+    <ion-item>
+      <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>
