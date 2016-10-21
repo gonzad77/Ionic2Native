@@ -1,21 +1,13 @@
-import {FormGroup} from '@angular/forms';
+import {FormControl} from '@angular/forms';
 
 export class UsernameValidator {
 
-  static validUsername(fg: FormGroup){
+  static validUsername(fc: FormControl){
 
-    return new Promise(resolve => {
-
-      setTimeout(() => {
-        if(fg.value.toLowerCase() === "abc123" || fg.value.toLowerCase() === "123abc"){
-          console.log("true");
-          resolve(true);
-
+        if(fc.value.toLowerCase() === "abc123" || fc.value.toLowerCase() === "123abc"){
+          return ({validUsername: true});
         } else {
-          resolve(false);
+          return (null);
         }
-      }, 2000);
-
-    });
   }
 }
