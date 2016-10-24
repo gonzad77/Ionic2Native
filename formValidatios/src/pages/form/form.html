@@ -48,6 +48,13 @@
     </div>
 
     <ion-item>
+      <ion-label floating color="primary">Country</ion-label>
+      <ion-select formControlName="country">
+        <ion-option *ngFor="let item of counties" value="{{item.name}}">{{item.name}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating color="primary">Gender</ion-label>
       <ion-select formControlName="gender">
         <ion-option value="male" selected="true">Male</ion-option>

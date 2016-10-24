@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import { UsernameValidator } from '../../app/username.validator';
-import { EqualValidator } from '../../app/password.validator'
-import { UserPage } from '../user/user'
+import { EqualValidator } from '../../app/password.validator';
+import { UserPage } from '../user/user';
+import { Country } from './country.interface'
 
 import { NavController } from 'ionic-angular';
 
@@ -11,15 +12,26 @@ import { NavController } from 'ionic-angular';
   selector: 'page-form',
   templateUrl: 'form.html',
 })
+
 export class FormPage {
 
   sampleForm: FormGroup;
   termsAgree: boolean;
+  countries: Country[];
 
   constructor(public navCtrl: NavController, public fbld: FormBuilder) {
   }
 
   ionViewDidLoad() {
+    this.countries = [{
+      iso: 'US',
+      name: 'United States',
+      code: '+1'
+    }, {
+      iso: 'UY',
+      name: 'Uruguay',
+      code: '+598'
+    }];
     this.termsAgree = true;
     this.sampleForm = this.fbld.group({
       username: ['', Validators.compose([UsernameValidator.validUsername, Validators.maxLength(25), Validators.minLength(5), Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.required])],
