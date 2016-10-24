@@ -3,12 +3,14 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormPage } from '../pages/form/form';
 import { UserPage } from '../pages/user/user';
+import { EqualValidator } from './password.validator';
 
 @NgModule({
   declarations: [
     MyApp,
     FormPage,
     UserPage,
+    EqualValidator
   ],
   imports: [
     IonicModule.forRoot(MyApp),

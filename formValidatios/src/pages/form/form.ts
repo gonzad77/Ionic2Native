@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import { UsernameValidator } from '../../app/username.validator';
+import { EqualValidator } from '../../app/password.validator'
+import { UserPage } from '../user/user'
 
 import { NavController } from 'ionic-angular';
 
@@ -12,16 +14,18 @@ import { NavController } from 'ionic-angular';
 export class FormPage {
 
   sampleForm: FormGroup;
+  termsAgree: boolean;
 
   constructor(public navCtrl: NavController, public fbld: FormBuilder) {
   }
 
   ionViewDidLoad() {
+    this.termsAgree = true;
     this.sampleForm = this.fbld.group({
       username: ['', Validators.compose([UsernameValidator.validUsername, Validators.maxLength(25), Validators.minLength(5), Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.required])],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
       gender: ['male', Validators.required],
       password: ['', Validators.compose([Validators.minLength(5), Validators.required])],
       confirmPassword: ['', Validators.required],
@@ -73,7 +77,8 @@ export class FormPage {
       'required':      'Surname is required'
     },
     'email': {
-      'required':      'Email is required'
+      'required':      'Email is required',
+      'pattern':       'Enter a valid email.'
     },
     'password':{
       'required':      'Password is required',
@@ -83,18 +88,21 @@ export class FormPage {
     'confirmPassword':{
       'required':      'Confirm password is required',
       'minlength':     'Confirm password must be at least 5 characters long.',
-      'pattern':       'Your password must contain one lower and uppercase letter, and one non-alpha character.'
+      'pattern':       'Your password must contain one lower and uppercase letter, and one non-alpha character.',
+      'validateEqual': 'Password mismatch'
     }
   };
 
   onSubmit(values){
     if(values.agree){
       console.log(values);
+      this.termsAgree = true;
+      this.navCtrl.push(UserPage);
     }
     else{
       console.log("error");
+      this.termsAgree = false;
     }
-    console.log(values);
   }
 
 

@@ -57,7 +57,7 @@
 
     <ion-item>
       <ion-label floating color="primary" >Password</ion-label>
-      <ion-input type="password" formControlName="password"></ion-input>
+      <ion-input type="password" formControlName="password" validateEqual="confirmPassword" reverse="true"></ion-input>
     </ion-item>
     <div *ngIf="formErrors.password">
       <div *ngFor="let errors of formErrors.password" >
@@ -67,7 +67,7 @@
 
     <ion-item>
       <ion-label floating color="primary" >Confirm Password</ion-label>
-      <ion-input type="password" formControlName="confirmPassword"></ion-input>
+      <ion-input type="password" formControlName="confirmPassword" validateEqual="password" reverse="false"></ion-input>
     </ion-item>
     <div *ngIf="formErrors.confirmPassword">
       <div *ngFor="let errors of formErrors.confirmPassword" >
@@ -78,8 +78,8 @@
     <ion-item class="term">
       <ion-label class="terms-checkbox-label">I read Terms and Conditions</ion-label>
       <ion-checkbox color="primary" formControlName="agree"></ion-checkbox>
-      <!-- <div [hidden]="sampleForm.values.agree">You must accept terms and conditions</div> -->
     </ion-item>
+    <p class="alert" [hidden]="termsAgree">You must accept terms and conditions</p>
 
     <button ion-button full type="submit" [disabled]="!sampleForm.valid">Submit</button>
 
