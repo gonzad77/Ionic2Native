@@ -4,7 +4,7 @@ import 'rxjs/add/operator/debounceTime';
 import { UsernameValidator } from '../../app/username.validator';
 import { EqualValidator } from '../../app/password.validator';
 import { UserPage } from '../user/user';
-import { Country } from './country.interface'
+import { Country } from './country.class'
 
 import { NavController } from 'ionic-angular';
 
@@ -23,21 +23,14 @@ export class FormPage {
   }
 
   ionViewDidLoad() {
-    this.countries = [{
-      iso: 'US',
-      name: 'United States',
-      code: '+1'
-    }, {
-      iso: 'UY',
-      name: 'Uruguay',
-      code: '+598'
-    }];
+    this.countries = [new Country('UY', 'Uruguay', '+598'), new Country('US', 'United States', '+1')];
     this.termsAgree = true;
     this.sampleForm = this.fbld.group({
       username: ['', Validators.compose([UsernameValidator.validUsername, Validators.maxLength(25), Validators.minLength(5), Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.required])],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+      country: ['Uruguay', Validators.required],
       gender: ['male', Validators.required],
       password: ['', Validators.compose([Validators.minLength(5), Validators.required])],
       confirmPassword: ['', Validators.required],
