@@ -50,9 +50,33 @@
     <ion-item>
       <ion-label floating color="primary">Country</ion-label>
       <ion-select formControlName="country">
-        <ion-option *ngFor="let item of countries" [value]="item.name">{{item.name}}</ion-option>
+        <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
       </ion-select>
     </ion-item>
+    <ion-row>
+      <ion-col width-30>
+        <ion-item>
+          <ion-label color="primary">Phone:</ion-label>
+        </ion-item>
+      </ion-col>
+      <ion-col width-25>
+        <ion-item>
+          <p>{{sampleForm.value.country.code}}</p>
+        </ion-item>
+      </ion-col>
+      <ion-col width-50>
+        <ion-item>
+          <ion-input type="tel" formControlName="phone" placeholder="Your Number"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <p>{{sampleForm.value.phone}}<p>
+    <div *ngIf="formErrors.phone">
+      <div *ngFor="let errors of formErrors.phone" >
+        <p class="alert">{{ errors }}<p>
+      </div>
+    </div>
+
 
     <ion-item>
       <ion-label floating color="primary">Gender</ion-label>

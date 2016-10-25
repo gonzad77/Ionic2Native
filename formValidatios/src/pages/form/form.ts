@@ -5,6 +5,7 @@ import { UsernameValidator } from '../../app/username.validator';
 import { EqualValidator } from '../../app/password.validator';
 import { UserPage } from '../user/user';
 import { Country } from './country.class'
+import { PhoneNumberUtil } from 'google-libphonenumber';
 
 import { NavController } from 'ionic-angular';
 
@@ -30,7 +31,8 @@ export class FormPage {
       name: ['', Validators.required],
       surname: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
-      country: ['Uruguay', Validators.required],
+      country: [this.countries[0], Validators.required],
+      phone: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
       gender: ['male', Validators.required],
       password: ['', Validators.compose([Validators.minLength(5), Validators.required])],
       confirmPassword: ['', Validators.required],
@@ -64,6 +66,7 @@ export class FormPage {
     'name': [],
     'surname': [],
     'email': [],
+    'phone': [],
     'password': [],
     'confirmPassword': []
   };
@@ -85,7 +88,11 @@ export class FormPage {
       'required':      'Email is required',
       'pattern':       'Enter a valid email.'
     },
-    'password':{
+    'phone': {
+      'required':      'Phone is required',
+      'pattern':        'Enter only numbers'
+    },
+    'password': {
       'required':      'Password is required',
       'minlength':     'Password must be at least 5 characters long.',
       'pattern':       'Your password must contain one lower and uppercase letter, and one non-alpha character.'
