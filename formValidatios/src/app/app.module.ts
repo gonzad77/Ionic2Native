@@ -4,13 +4,17 @@ import { MyApp } from './app.component';
 import { FormPage } from '../pages/form/form';
 import { UserPage } from '../pages/user/user';
 import { EqualValidator } from './password.validator';
+import { PhoneValidator } from './phone.validator';
+import { CountryValidator } from './country.validator';
 
 @NgModule({
   declarations: [
     MyApp,
     FormPage,
     UserPage,
-    EqualValidator
+    EqualValidator,
+    PhoneValidator,
+    CountryValidator
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -19,7 +23,7 @@ import { EqualValidator } from './password.validator';
   entryComponents: [
     MyApp,
     FormPage,
-    UserPage,
+    UserPage
   ],
   providers: []
 })

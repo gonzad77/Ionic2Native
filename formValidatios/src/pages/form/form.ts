@@ -5,7 +5,7 @@ import { UsernameValidator } from '../../app/username.validator';
 import { EqualValidator } from '../../app/password.validator';
 import { UserPage } from '../user/user';
 import { Country } from './country.class'
-import { PhoneNumberUtil } from 'google-libphonenumber';
+
 
 import { NavController } from 'ionic-angular';
 
@@ -90,7 +90,8 @@ export class FormPage {
     },
     'phone': {
       'required':      'Phone is required',
-      'pattern':        'Enter only numbers'
+      'pattern':       'Enter only numbers',
+      'validatePhone': 'Phone incorrect for the country selected'
     },
     'password': {
       'required':      'Password is required',

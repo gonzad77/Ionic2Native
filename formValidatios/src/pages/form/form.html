@@ -49,8 +49,8 @@
 
     <ion-item>
       <ion-label floating color="primary">Country</ion-label>
-      <ion-select formControlName="country">
-        <ion-option *ngFor="let item of countries" [value]="item">{{item.name}}</ion-option>
+      <ion-select formControlName="country" validateCountry="phone">
+        <ion-option *ngFor="let item of countries" [value]="item" >{{item.name}}</ion-option>
       </ion-select>
     </ion-item>
     <ion-row>
@@ -66,11 +66,10 @@
       </ion-col>
       <ion-col width-50>
         <ion-item>
-          <ion-input type="tel" formControlName="phone" placeholder="Your Number"></ion-input>
+          <ion-input type="tel" formControlName="phone" placeholder="Your Number" validatePhone="country"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
-    <p>{{sampleForm.value.phone}}<p>
     <div *ngIf="formErrors.phone">
       <div *ngFor="let errors of formErrors.phone" >
         <p class="alert">{{ errors }}<p>
