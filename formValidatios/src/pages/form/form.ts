@@ -48,7 +48,7 @@ export class FormPage {
     if (!this.sampleForm) { return; }
     const form = this.sampleForm;
     for (const field in this.formErrors) {
-      // clear previous error message (if any)
+      // clear previous error message
       this.formErrors[field] = [];
       this.sampleForm[field] = '';
       const control = form.get(field);
@@ -108,12 +108,10 @@ export class FormPage {
 
   onSubmit(values){
     if(values.agree){
-      console.log(values);
       this.termsAgree = true;
       this.navCtrl.push(UserPage);
     }
     else{
-      console.log("error");
       this.termsAgree = false;
     }
   }
