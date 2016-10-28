@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-import { UsernameValidator } from '../../validators/username.validator';
-import { EqualValidator } from '../../validators/password.validator';
+import { UsernameValidator, EqualValidator } from '../../validators';
 import { UserPage } from '../user/user';
 import { Country } from './country.class'
-
-
 import { NavController } from 'ionic-angular';
 
 @Component({
@@ -20,21 +17,37 @@ export class FormPage {
   termsAgree: boolean;
   countries: Country[];
 
-  constructor(public navCtrl: NavController, public fbld: FormBuilder) {
-  }
+  constructor(public navCtrl: NavController, public fbld: FormBuilder) {}
 
   ionViewDidLoad() {
     this.countries = [new Country('UY', 'Uruguay', '+598'), new Country('US', 'United States', '+1')];
     this.termsAgree = true;
+
     this.sampleForm = this.fbld.group({
-      username: ['', Validators.compose([UsernameValidator.validUsername, Validators.maxLength(25), Validators.minLength(5), Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'), Validators.required])],
+      username: ['', Validators.compose([
+        UsernameValidator.validUsername,
+        Validators.maxLength(25),
+        Validators.minLength(5),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.required
+      ])],
       name: ['', Validators.required],
-      surname: ['', Validators.required],
-      email: ['', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])],
+      lastname: ['', Validators.required],
+      email: ['', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])],
       country: [this.countries[0], Validators.required],
-      phone: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
+      phone: ['', Validators.compose([
+        Validators.pattern('^\\d+$'),
+        Validators.required
+      ])],
       gender: ['male', Validators.required],
-      password: ['', Validators.compose([Validators.minLength(5), Validators.required])],
+      password: ['', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ])],
       confirmPassword: ['', Validators.required],
       agree: [false, Validators.required]
     });
@@ -64,12 +77,13 @@ export class FormPage {
   formErrors = {
     'username': [],
     'name': [],
-    'surname': [],
+    'lastname': [],
     'email': [],
     'phone': [],
     'password': [],
     'confirmPassword': []
   };
+
   validationMessages = {
     'username': {
       'required':      'Username is required.',
@@ -81,8 +95,8 @@ export class FormPage {
     'name': {
       'required':      'Name is required.'
     },
-    'surname': {
-      'required':      'Surname is required'
+    'lastname': {
+      'required':      'Last name is required'
     },
     'email': {
       'required':      'Email is required',
@@ -96,12 +110,12 @@ export class FormPage {
     'password': {
       'required':      'Password is required',
       'minlength':     'Password must be at least 5 characters long.',
-      'pattern':       'Your password must contain one lower and uppercase letter, and one non-alpha character.'
+      'pattern':       'Your password must contain at least one uppercase, one lowercase, and one number.'
     },
     'confirmPassword':{
       'required':      'Confirm password is required',
       'minlength':     'Confirm password must be at least 5 characters long.',
-      'pattern':       'Your password must contain one lower and uppercase letter, and one non-alpha character.',
+      'pattern':       'Your password must contain at least one uppercase, one lowercase, and one number.',
       'validateEqual': 'Password mismatch'
     }
   };
@@ -115,6 +129,4 @@ export class FormPage {
       this.termsAgree = false;
     }
   }
-
-
 }

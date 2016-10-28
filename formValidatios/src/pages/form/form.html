@@ -28,11 +28,11 @@
     </div>
 
     <ion-item>
-      <ion-label floating color="primary" >Surname</ion-label>
-      <ion-input type="text" formControlName="surname"></ion-input>
+      <ion-label floating color="primary" >Last Name</ion-label>
+      <ion-input type="text" formControlName="lastname"></ion-input>
     </ion-item>
-    <div *ngIf="formErrors.surname">
-      <div *ngFor="let errors of formErrors.surname" >
+    <div *ngIf="formErrors.lastname">
+      <div *ngFor="let errors of formErrors.lastname" >
         <p class="alert">{{ errors }}<p>
       </div>
     </div>
@@ -106,7 +106,7 @@
     </div>
 
     <ion-item class="term">
-      <ion-label class="terms-checkbox-label">I read Terms and Conditions</ion-label>
+      <ion-label class="terms-checkbox-label">I accept terms and conditions</ion-label>
       <ion-checkbox color="primary" formControlName="agree"></ion-checkbox>
     </ion-item>
     <p class="alert" [hidden]="termsAgree">You must accept terms and conditions</p>

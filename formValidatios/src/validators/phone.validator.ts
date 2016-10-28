@@ -9,35 +9,34 @@ export const PHONE_VALIDATOR: any = {
 };
 
 @Directive({
-    selector: '[validatePhone][formControlName],[validatePhone][formControl],[validatePhone][ngModel]',
-    providers: [ PHONE_VALIDATOR ]
+  selector: '[validatePhone][formControlName],[validatePhone][formControl],[validatePhone][ngModel]',
+  providers: [ PHONE_VALIDATOR ]
 })
 
 export class PhoneValidator implements Validator {
 
-    @Input() validatePhone: string;
+  @Input() validatePhone: string;
 
-    validate(c: AbstractControl): { [key: string]: any } {
-        // self value
-        let phone = c.value;
+  validate(c: AbstractControl): { [key: string]: any } {
+    // self value
+    let phone = c.value;
 
-        // control vlaue
-        let country = c.root.get(this.validatePhone);
+    // control value
+    let country = c.root.get(this.validatePhone);
 
-        try{
-              const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
-              let phoneNumber = "" + phone + "",
-                  region = country.value.iso,
-                  number = phoneUtil.parse(phoneNumber, region),
-                  isValidNumber = phoneUtil.isValidNumber(number);
-                  if(!isValidNumber){
-                    return {validatePhone: false}
-                  }
-        }catch(e){
-              console.log(e);
-              return {validatePhone: false};
-            }
-
-        return null
+    try{
+      const phoneUtil = libphonenumber.PhoneNumberUtil.getInstance();
+      let phoneNumber = "" + phone + "",
+          region = country.value.iso,
+          number = phoneUtil.parse(phoneNumber, region),
+          isValidNumber = phoneUtil.isValidNumber(number);
+          if(!isValidNumber){
+            return {validatePhone: false}
+          }
+    }catch(e){
+      console.log(e);
+      return { validatePhone: false };
     }
+    return null
+  }
 }

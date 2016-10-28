@@ -1,7 +1,6 @@
 import { Directive, forwardRef, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
-
 export const COUNTRY_VALIDATOR: any = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => CountryValidator),

@@ -3,9 +3,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { FormPage } from '../pages/form/form';
 import { UserPage } from '../pages/user/user';
-import { EqualValidator } from '../validators/password.validator';
-import { PhoneValidator } from '../validators/phone.validator';
-import { CountryValidator } from '../validators/country.validator';
+import { EqualValidator, PhoneValidator, CountryValidator } from '../validators';
 
 @NgModule({
   declarations: [
