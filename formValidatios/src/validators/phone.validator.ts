@@ -1,18 +1,21 @@
 import libphonenumber from 'google-libphonenumber';
-import { Directive, forwardRef, Attribute } from '@angular/core';
+import { Directive, forwardRef, Input } from '@angular/core';
 import { Validator, AbstractControl, NG_VALIDATORS } from '@angular/forms';
 
+export const PHONE_VALIDATOR: any = {
+  provide: NG_VALIDATORS,
+  useExisting: forwardRef(() => PhoneValidator),
+  multi: true
+};
 
 @Directive({
     selector: '[validatePhone][formControlName],[validatePhone][formControl],[validatePhone][ngModel]',
-    providers: [
-        { provide: NG_VALIDATORS, useExisting: forwardRef(() => PhoneValidator), multi: true }
-    ]
+    providers: [ PHONE_VALIDATOR ]
 })
 
 export class PhoneValidator implements Validator {
-    constructor( @Attribute('validatePhone') public validatePhone: string) {
-    }
+
+    @Input() validatePhone: string;
 
     validate(c: AbstractControl): { [key: string]: any } {
         // self value
