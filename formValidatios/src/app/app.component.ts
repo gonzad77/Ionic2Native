@@ -12,8 +12,6 @@ import { UserPage } from '../pages/user/user';
 
 export class MyApp {
 
-  // @ViewChild(Nav) nav: Nav;
-
   rootPage: any = FormPage;
 
   constructor(platform: Platform) {

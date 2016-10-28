@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-import { UsernameValidator } from '../../app/username.validator';
-import { EqualValidator } from '../../app/password.validator';
+import { UsernameValidator } from '../../validators/username.validator';
+import { EqualValidator } from '../../validators/password.validator';
 import { UserPage } from '../user/user';
 import { Country } from './country.class'
 
@@ -11,7 +11,7 @@ import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-form',
-  templateUrl: 'form.html',
+  templateUrl: 'form.html'
 })
 
 export class FormPage {
