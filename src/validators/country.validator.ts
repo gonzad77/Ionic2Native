@@ -17,7 +17,7 @@ export class CountryValidator implements Validator {
 
   validate(c: AbstractControl): { [key: string]: any } {
     // self value
-    let country = c.value;
+    // let country = c.value;
     let phone = c.root.get(this.validateCountry);
     phone.updateValueAndValidity();
     return null;

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder, FormGroup} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-import { UsernameValidator, EqualValidator } from '../../validators';
+import { UsernameValidator } from '../../validators';
 import { UserPage } from '../user/user';
-import { Country } from './country.class'
+import { Country } from './country.class';
 import { NavController } from 'ionic-angular';
 
 @Component({
